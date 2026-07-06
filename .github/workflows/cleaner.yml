@@ -1,0 +1,29 @@
+name: Cleaner
+
+on:
+  workflow_dispatch:
+    inputs:
+      categories:
+        description: Comma-separated categories (dead-code, unused-dependencies)
+        type: string
+        default: dead-code,unused-dependencies
+      dry_run:
+        description: Discover findings without opening PRs
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: cleaner-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  cleaner:
+    uses: unbounce/agentic-tools/.github/workflows/cleaner.yml@v1
+    with:
+      categories: ${{ inputs.categories }}
+      dry_run: ${{ inputs.dry_run }}
+    secrets: inherit
