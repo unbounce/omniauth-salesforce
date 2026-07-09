@@ -1,0 +1,19 @@
+apiVersion: v3
+kind: service
+metadata:
+  name: omniauth-salesforce
+  displayName: Omniauth Salesforce
+  tags:
+    - archetype:library
+    - gp-status:active
+    - managed-by:golden-path
+  owner: platform-services
+  links:
+    - name: GitHub
+      type: repo
+      url: https://github.com/unbounce/omniauth-salesforce
+spec:
+  tier: "5"
+  type: custom
+  languages:
+    - ruby
